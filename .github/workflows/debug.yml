@@ -26,7 +26,15 @@ jobs:
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
-      
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 34
+          ndk: 26.2.11394342
+          cmake: 3.22.1
+          cache: gradle
+
       - name: Build with Gradle
         id: gradle_build_debug
         run: ./gradlew assembleNonRootDebug
