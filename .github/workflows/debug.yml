@@ -35,11 +35,8 @@ jobs:
           cmake: 3.22.1
           cache: gradle
 
-      - name: Debug NDK build environment
-        run: |
-          echo $PATH
-          ndk-build --version
-          ls -l /usr/local/lib/android/sdk/ndk/26.2.11394342/
+      - name: Add NDK to PATH
+        run: echo "$ANDROID_SDK_ROOT/ndk/26.2.11394342:$PATH" >> $GITHUB_ENV
 
       - name: Build with Gradle
         id: gradle_build_debug
