@@ -36,7 +36,10 @@ jobs:
           cache: gradle
 
       - name: Add NDK to PATH
-        run: echo "$ANDROID_SDK_ROOT/ndk/26.2.11394342:$PATH" >> $GITHUB_ENV
+        run: echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/26.2.11394342" >> $GITHUB_ENV
+
+      - name: Add NDK to PATH in shell
+        run: echo "PATH=$ANDROID_NDK_HOME:$PATH" >> $GITHUB_ENV
 
       - name: Build with Gradle
         id: gradle_build_debug
