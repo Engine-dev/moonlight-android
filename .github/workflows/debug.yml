@@ -35,9 +35,15 @@ jobs:
           cmake: 3.22.1
           cache: gradle
 
+      - name: Debug NDK build environment
+        run: |
+          echo $PATH
+          ndk-build --version
+          ls -l /usr/local/lib/android/sdk/ndk/26.2.11394342/
+
       - name: Build with Gradle
         id: gradle_build_debug
-        run: ./gradlew assembleNonRootDebug
+        run: ./gradlew assembleNonRootDebug --stacktrace --info
 
       - name: Upload APK to file.io
         id: upload_apk
