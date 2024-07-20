@@ -1,4 +1,4 @@
-name: Compilling..
+name: Compiling..
 
 on:
   push:
@@ -29,11 +29,12 @@ jobs:
       
       - name: Build with Gradle
         id: gradle_build_debug
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleNonRootDebug
 
       - name: Upload APK to file.io
         id: upload_apk
         run: |
-          apk_path=$(find app/build/outputs/apk/debug -name "*.apk" | head -n 1)
+          apk_path=$(find app/build/outputs/apk/nonRoot/debug -name "*.apk" | head -n 1)
           response=$(curl -F "file=@$apk_path" https://file.io)
           echo "Response: $response"
+          
